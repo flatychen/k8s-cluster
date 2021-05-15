@@ -4,21 +4,21 @@ servers:
 - name: k8s-master
   type: master
   box: ubuntu/xenial64
-  box_version: 20180831.0.0
+  box_version: 20210202.0.0
   eth1: 192.168.205.10
   mem: 2048
   cpu: 2
 - name: k8s-worker-1
   type: worker
   box: ubuntu/xenial64
-  box_version: 20180831.0.0
+  box_version: 20210202.0.0
   eth1: 192.168.205.11
   mem: 2048
   cpu: 2
 - name: k8s-worker-2
   type: worker
   box: ubuntu/xenial64
-  box_version: 20180831.0.0
+  box_version: 20210202.0.0
   eth1: 192.168.205.12
   mem: 2048
   cpu: 2

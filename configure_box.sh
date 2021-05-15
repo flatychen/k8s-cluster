@@ -3,19 +3,21 @@
 # version of the docker, but kubeadm requires 17.03 or older
 echo "==== Configure Box"
 echo "====== Install Docker Engine 17.03"
+sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+sudo sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 apt-get update
 apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-add-apt-repository "deb https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
+curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | apt-key add -
+add-apt-repository "deb https://mirrors.ustc.edu.cn/docker-ce/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
 apt-get update && apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 17.03 | head -1 | awk '{print $3}')
 # run docker commands as vagrant user (sudo not required)
 usermod -aG docker vagrant
 # install kubeadm
 echo "====== Install kubeadm, kubelet, kubectl"
 apt-get install -y apt-transport-https curl
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+curl -s https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
 cat >> /etc/apt/sources.list.d/kubernetes.list << EOL
-    deb http://apt.kubernetes.io/ kubernetes-xenial main
+    deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
 EOL
 apt-get update
 apt-get install -y kubelet kubeadm kubectl
