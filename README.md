@@ -2,6 +2,8 @@
 
 This is a tool I use to play with K8s clusters on my MacOS using Kubeadm, Vagrant, and Virtual Box. 
 
+**add some mirror to  adapt cn env!**
+
 ## Pre-requisites
 
  * **[Vagrant 2.1.4+](https://www.vagrantup.com)**

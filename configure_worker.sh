@@ -5,3 +5,6 @@ echo "====== Copy join script from the master"
 sshpass -p "vagrant" scp -o StrictHostKeyChecking=no vagrant@192.168.205.10:/etc/kubeadm_join_cmd.sh .
 echo "====== Join the cluster"
 sh ./kubeadm_join_cmd.sh
+echo "====== Configure SSH"
+sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication yes" /etc/ssh/sshd_config
+service sshd restart
